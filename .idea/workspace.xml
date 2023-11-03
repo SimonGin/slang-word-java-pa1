@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Added important files, initial the UI window for the app and complete the UI for search box">
+    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Complete the UI with a list of result at body panel, handle the get text from the search field">
+      <change afterPath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slang/SlangWord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,29 +38,29 @@
     </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2Xe10u99RE8bgTBq1DcXE3AjkY6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "onboarding.tips.debug.path": "/Users/simongin/Library/CloudStorage/OneDrive-VNU-HCMUS/Y3S1/Java/Exercise/PA01/SlangWord/src/main/java/slang/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/simongin/Library/CloudStorage/OneDrive-VNU-HCMUS/Y3S1/Java/Exercise/PA01/SlangWord/src/main/java/slang/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="slang.Main" />
@@ -76,7 +78,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698974517277</updated>
-      <workItem from="1698974518492" duration="5335000" />
+      <workItem from="1698974518492" duration="7566000" />
+      <workItem from="1698994111492" duration="296000" />
     </task>
     <task id="LOCAL-00001" summary="Added important files, initial the UI window for the app and complete the UI for search box">
       <option name="closed" value="true" />
@@ -86,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698978993580</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Complete the UI with a list of result at body panel, handle the get text from the search field">
+      <option name="closed" value="true" />
+      <created>1698980730115</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698980730115</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +116,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added important files, initial the UI window for the app and complete the UI for search box" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added important files, initial the UI window for the app and complete the UI for search box" />
+    <MESSAGE value="Complete the UI with a list of result at body panel, handle the get text from the search field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete the UI with a list of result at body panel, handle the get text from the search field" />
   </component>
 </project>
