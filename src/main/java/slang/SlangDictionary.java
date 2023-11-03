@@ -8,6 +8,10 @@ import java.util.HashMap;
 public class SlangDictionary {
     private HashMap<String,SlangWord> dictionary;
 
+    public HashMap<String, SlangWord> getDictionary() {
+        return dictionary;
+    }
+
     public SlangDictionary() {
         this.dictionary = new HashMap<>();
     }
@@ -31,8 +35,14 @@ public class SlangDictionary {
         buffReader.close();
     }
 
-//    public boolean searchKey(String key) {
-//        SlangWord needleSlang = new SlangWord(key," ");
-//        return dictionary.contains(needleSlang);
-//    }
+    public SlangWord searchKey(String key) {
+        if (!dictionary.containsKey(key)) {
+            return null;
+        }
+        return dictionary.get(key);
+    }
+
+    public SlangWord searchDef(String key_word) {
+        return null;
+    }
 }

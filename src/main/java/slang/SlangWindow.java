@@ -1,13 +1,18 @@
 package slang;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Map;
 
-public class SlangWindow extends JFrame implements ActionListener{
-    ArrayList<String> resultList = new ArrayList<>();
+public class SlangWindow extends JFrame implements ActionListener, DocumentListener {
+    SlangDictionary dictionary;
+    DefaultTableModel tableModel;
+
     String srchDes;
 
     JTextField srchSlangField;
@@ -15,10 +20,19 @@ public class SlangWindow extends JFrame implements ActionListener{
     JButton srchDefBtn;
     JPanel srchBox;
 
-    JList resultListBox;
+    JTable resulTable;
     JScrollPane resultScrollPane;
     JPanel resultBox;
-    SlangWindow() {
+
+    private void loadAllWords() {
+        for (Map.Entry<String, SlangWord> entry : dictionary.getDictionary().entrySet()) {
+            tableModel.addRow(new Object[]{entry.getKey(), entry.getValue().getDef()});
+        }
+    }
+
+    SlangWindow(SlangDictionary dict) {
+        this.dictionary = dict;
+
         this.setTitle("Slang Dictionary");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
@@ -27,6 +41,7 @@ public class SlangWindow extends JFrame implements ActionListener{
         srchSlangField = new JTextField();
         srchSlangField.setPreferredSize(new Dimension(500,50));
         srchSlangField.setText("Input keyword or definition of the slang word you want to search");
+        srchSlangField.getDocument().addDocumentListener(this);
 
         srchKeyBtn = new JButton("Search by keyword");
         srchKeyBtn.addActionListener(this);
@@ -43,18 +58,18 @@ public class SlangWindow extends JFrame implements ActionListener{
 
         this.add(srchBox,BorderLayout.NORTH);
 
-        for (int i = 0;i < 50;i++) {
-            resultList.add("Simon");
-            resultList.add("Zacki");
-        }
+        tableModel = new DefaultTableModel(new Object[]{"Slang", "Meaning"}, 0) {
+            @Override
+            public  boolean isCellEditable(int row,int col) {
+                return false;
+            }
+        };
 
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        for (String item : resultList) {
-            listModel.addElement(item);
-        }
+        loadAllWords();
 
-        resultListBox = new JList<>(listModel);
-        resultScrollPane = new JScrollPane(resultListBox);
+        resulTable = new JTable(tableModel);
+        resulTable.setFont(new Font("Roboto", Font.PLAIN, 18));
+        resultScrollPane = new JScrollPane(resulTable);
         resultScrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         resultBox = new JPanel();
@@ -70,7 +85,26 @@ public class SlangWindow extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if ((e.getSource() == srchKeyBtn) || (e.getSource() == srchDefBtn)) {
             srchDes = srchSlangField.getText();
-            System.out.println(srchDes);
+            if (e.getSource() == srchKeyBtn) {
+                SlangWord foundWord = dictionary.searchKey(srchDes);
+                tableModel.setRowCount(0);
+                tableModel.addRow(new Object[]{foundWord.getKey(), foundWord.getDef()});
+            }
         }
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        if (srchSlangField.getText().isEmpty()) {
+            loadAllWords();
+        }
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
     }
 }
