@@ -3,6 +3,7 @@ package slang;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SlangDictionary {
@@ -42,7 +43,14 @@ public class SlangDictionary {
         return dictionary.get(key);
     }
 
-    public SlangWord searchDef(String key_word) {
-        return null;
+    public ArrayList<SlangWord> searchDef(String key_word) {
+        ArrayList<SlangWord> foundWords = new ArrayList<>();
+        for (SlangWord word : dictionary.values()) {
+            String definition = word.getDef();
+            if (definition.contains(key_word)) {
+                foundWords.add(word);
+            }
+        }
+        return foundWords;
     }
 }

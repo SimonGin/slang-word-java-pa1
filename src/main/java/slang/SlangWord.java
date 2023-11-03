@@ -33,17 +33,4 @@ public class SlangWord {
                 ", def='" + def + '\'' +
                 " }";
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SlangWord slangWord = (SlangWord) o;
-        return Objects.equals(key, slangWord.key);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(key);
-    }
 }

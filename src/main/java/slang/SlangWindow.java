@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class SlangWindow extends JFrame implements ActionListener, DocumentListener {
@@ -25,6 +26,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     JPanel resultBox;
 
     private void loadAllWords() {
+        tableModel.setRowCount(0);
         for (Map.Entry<String, SlangWord> entry : dictionary.getDictionary().entrySet()) {
             tableModel.addRow(new Object[]{entry.getKey(), entry.getValue().getDef()});
         }
@@ -40,7 +42,8 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
 
         srchSlangField = new JTextField();
         srchSlangField.setPreferredSize(new Dimension(500,50));
-        srchSlangField.setText("Input keyword or definition of the slang word you want to search");
+        srchSlangField.setText("Input keyword or definition of the slang you want to search");
+        srchSlangField.setFont(new Font("Roboto", Font.PLAIN, 18));
         srchSlangField.getDocument().addDocumentListener(this);
 
         srchKeyBtn = new JButton("Search by keyword");
@@ -89,6 +92,15 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 SlangWord foundWord = dictionary.searchKey(srchDes);
                 tableModel.setRowCount(0);
                 tableModel.addRow(new Object[]{foundWord.getKey(), foundWord.getDef()});
+            }
+            if (e.getSource() == srchDefBtn) {
+                ArrayList<SlangWord> foundWords = dictionary.searchDef(srchDes);
+                tableModel.setRowCount(0);
+                if (foundWords != null) {
+                    for (SlangWord word : foundWords) {
+                        tableModel.addRow(new Object[]{word.getKey(), word.getDef()});
+                    }
+                }
             }
         }
     }
