@@ -53,4 +53,8 @@ public class SlangDictionary {
         }
         return foundWords;
     }
+
+    public void deleteSlang(String key) {
+        dictionary.remove(key);
+    }
 }

@@ -3,6 +3,8 @@ package slang;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,15 +17,24 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     DefaultTableModel tableModel;
 
     String srchDes;
+    String selectedKey;
+    boolean selected = false;
+    ListSelectionModel listSelectModel;
 
     JTextField srchSlangField;
     JButton srchKeyBtn;
     JButton srchDefBtn;
     JPanel srchBox;
 
-    JTable resulTable;
+    JTable resultTable;
     JScrollPane resultScrollPane;
     JPanel resultBox;
+
+    JButton addBtn;
+    JButton editBtn;
+    JButton delBtn;
+    JButton hstrBtn;
+    JPanel actionBox;
 
     private void loadAllWords() {
         tableModel.setRowCount(0);
@@ -70,15 +81,44 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
 
         loadAllWords();
 
-        resulTable = new JTable(tableModel);
-        resulTable.setFont(new Font("Roboto", Font.PLAIN, 18));
-        resultScrollPane = new JScrollPane(resulTable);
+        resultTable = new JTable(tableModel);
+        resultTable.setFont(new Font("Roboto", Font.PLAIN, 18));
+        listSelectModel = resultTable.getSelectionModel();
+        listSelectModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        resultTable.setSelectionModel(listSelectModel);
+        listSelectModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = resultTable.getSelectedRow();
+                    if (selectedRow > -1) {
+                        selected = true;
+                        selectedKey = (String) resultTable.getValueAt(selectedRow, 0);
+                    }
+                }
+            }
+        });
+        resultScrollPane = new JScrollPane(resultTable);
         resultScrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         resultBox = new JPanel();
         resultBox.add(resultScrollPane);
-
         this.add(resultScrollPane,BorderLayout.CENTER);
+
+        addBtn = new JButton("Add new slang");
+        addBtn.addActionListener(this);
+        editBtn = new JButton("Edit selected slang");
+        editBtn.addActionListener(this);
+        delBtn = new JButton("Delete slang word");
+        delBtn.addActionListener(this);
+        hstrBtn = new JButton("View history");
+        hstrBtn.addActionListener(this);
+        actionBox = new JPanel();
+        actionBox.add(addBtn);
+        actionBox.add(editBtn);
+        actionBox.add(delBtn);
+        actionBox.add(hstrBtn);
+        this.add(actionBox,BorderLayout.SOUTH);
 
         this.setResizable(false);
         this.setVisible(true);
@@ -91,7 +131,9 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             if (e.getSource() == srchKeyBtn) {
                 SlangWord foundWord = dictionary.searchKey(srchDes);
                 tableModel.setRowCount(0);
-                tableModel.addRow(new Object[]{foundWord.getKey(), foundWord.getDef()});
+                if (foundWord != null) {
+                    tableModel.addRow(new Object[]{foundWord.getKey(), foundWord.getDef()});
+                }
             }
             if (e.getSource() == srchDefBtn) {
                 ArrayList<SlangWord> foundWords = dictionary.searchDef(srchDes);
@@ -101,6 +143,14 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                         tableModel.addRow(new Object[]{word.getKey(), word.getDef()});
                     }
                 }
+            }
+        }
+        if (e.getSource() == delBtn) {
+            if (selected) {
+                dictionary.deleteSlang(selectedKey);
+                listSelectModel.clearSelection();
+                selected = false;
+                loadAllWords();
             }
         }
     }
