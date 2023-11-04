@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class SlangWindow extends JFrame implements ActionListener, DocumentListener {
     SlangDictionary dictionary;
@@ -32,6 +33,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     JButton addBtn;
     JButton editBtn;
     JButton delBtn;
+    JButton randomBtn;
     JButton hstrBtn;
     JPanel actionBox;
 
@@ -109,9 +111,12 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         editBtn.addActionListener(this);
         delBtn = new JButton("Delete slang word");
         delBtn.addActionListener(this);
+        randomBtn = new JButton("Random a slang");
+        randomBtn.addActionListener(this);
         hstrBtn = new JButton("View history");
         hstrBtn.addActionListener(this);
         actionBox = new JPanel();
+        actionBox.add(randomBtn);
         actionBox.add(addBtn);
         actionBox.add(editBtn);
         actionBox.add(delBtn);
@@ -160,6 +165,20 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         if (e.getSource() == addBtn) {
             SlangPutFrame addNewSlangFrame = new SlangPutFrame(dictionary,"Add New Slang","Add");
         }
+
+        if (e.getSource() == randomBtn) {
+            String[] keyArr = dictionary.getDictionary().keySet().toArray(new String[0]);
+            Random random = new Random();
+            int randomIdx = random.nextInt(keyArr.length);
+            String randomKey = keyArr[randomIdx];
+            SlangWord randomSlang = dictionary.getDictionary().get(randomKey);
+            JOptionPane.showMessageDialog(null,
+                                 "Slang word for today is: " + randomSlang.getKey() +
+                                          "\nWith the meaning of: " + randomSlang.getDef(),
+                                   "Slang word randomized",
+                                          JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }
 
     @Override
