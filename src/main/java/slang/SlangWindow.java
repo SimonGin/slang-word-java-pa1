@@ -153,6 +153,12 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                     loadAllWords();
                 }
             }
+            else {
+                JOptionPane.showMessageDialog(null,"You haven't selected any slang to delete!!! Please select a word you want to delete!!!","Word not selected",JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        if (e.getSource() == addBtn) {
+            SlangPutFrame addNewSlangFrame = new SlangPutFrame(dictionary,"Add New Slang","Add");
         }
     }
 

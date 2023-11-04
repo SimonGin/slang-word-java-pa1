@@ -8,6 +8,5 @@ public class Main {
         dictionary.importFile();
 
         SlangWindow window = new SlangWindow(dictionary);
-
     }
 }
