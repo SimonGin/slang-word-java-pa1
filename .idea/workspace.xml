@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Added Search By Definition function and refined the Search By Keyword function">
+    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Added Action UI and handle delete slang by selecting row not confirming after">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +79,7 @@
       <workItem from="1698974518492" duration="7566000" />
       <workItem from="1698994111492" duration="8633000" />
       <workItem from="1699017048602" duration="2695000" />
-      <workItem from="1699064429654" duration="3261000" />
+      <workItem from="1699064429654" duration="4199000" />
     </task>
     <task id="LOCAL-00001" summary="Added important files, initial the UI window for the app and complete the UI for search box">
       <option name="closed" value="true" />
@@ -130,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699018454523</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Action UI and handle delete slang by selecting row not confirming after">
+      <option name="closed" value="true" />
+      <created>1699068413417</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699068413417</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +161,7 @@
     <MESSAGE value="Change Type of SlangDictionary to HashMap for a better use" />
     <MESSAGE value="Change ResultBox UI to table and added find word by slang key word function with the UI" />
     <MESSAGE value="Added Search By Definition function and refined the Search By Keyword function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Search By Definition function and refined the Search By Keyword function" />
+    <MESSAGE value="Added Action UI and handle delete slang by selecting row not confirming after" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Action UI and handle delete slang by selecting row not confirming after" />
   </component>
 </project>

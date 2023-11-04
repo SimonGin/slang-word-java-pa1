@@ -18,7 +18,6 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
 
     String srchDes;
     String selectedKey;
-    boolean selected = false;
     ListSelectionModel listSelectModel;
 
     JTextField srchSlangField;
@@ -92,7 +91,6 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 if (!e.getValueIsAdjusting()) {
                     int selectedRow = resultTable.getSelectedRow();
                     if (selectedRow > -1) {
-                        selected = true;
                         selectedKey = (String) resultTable.getValueAt(selectedRow, 0);
                     }
                 }
@@ -146,11 +144,14 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             }
         }
         if (e.getSource() == delBtn) {
-            if (selected) {
-                dictionary.deleteSlang(selectedKey);
-                listSelectModel.clearSelection();
-                selected = false;
-                loadAllWords();
+            if (!listSelectModel.isSelectionEmpty()) {
+                int confirm_code = JOptionPane.showConfirmDialog(null,"Do you want to delete the selected slang permanently (a really long time)?","Delete Confirmation",JOptionPane.YES_NO_OPTION);
+                if (confirm_code == 0) {
+                    listSelectModel.clearSelection();
+                    dictionary.deleteSlang(selectedKey);
+                    srchSlangField.setText("");
+                    loadAllWords();
+                }
             }
         }
     }
