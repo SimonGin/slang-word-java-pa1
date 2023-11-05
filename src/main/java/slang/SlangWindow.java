@@ -6,7 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -15,6 +14,7 @@ import java.util.Random;
 public class SlangWindow extends JFrame implements ActionListener, DocumentListener {
     static public SlangDictionary dictionary;
     static public DefaultTableModel tableModel;
+    ArrayList<SlangWord> historySlangs = new ArrayList<>();
 
     String srchDes;
     String selectedKey;
@@ -45,7 +45,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     }
 
     SlangWindow(SlangDictionary dict) {
-        this.dictionary = dict;
+        dictionary = dict;
 
         this.setTitle("Slang Dictionary");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -136,6 +136,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             srchDes = srchSlangField.getText();
             if (e.getSource() == srchKeyBtn) {
                 SlangWord foundWord = dictionary.searchKey(srchDes);
+                historySlangs.add(foundWord);
                 tableModel.setRowCount(0);
                 if (foundWord != null) {
                     tableModel.addRow(new Object[]{foundWord.getKey(), foundWord.getDef()});
@@ -147,6 +148,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 if (foundWords != null) {
                     for (SlangWord word : foundWords) {
                         tableModel.addRow(new Object[]{word.getKey(), word.getDef()});
+                        historySlangs.add(word);
                     }
                 }
             }
@@ -166,11 +168,11 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             }
         }
         if (e.getSource() == addBtn) {
-            SlangPutFrame addNewSlangFrame = new SlangPutFrame(dictionary,"","Add New Slang","Add");
+            new SlangPutFrame(dictionary,"","Add New Slang","Add");
         }
 
         if (e.getSource() == editBtn) {
-            SlangPutFrame editNewSlangFrame = new SlangPutFrame(dictionary,selectedKey,"Edit Selected Slang","Confirm");
+            new SlangPutFrame(dictionary,selectedKey,"Edit Selected Slang","Confirm");
         }
 
         if (e.getSource() == randomBtn) {
@@ -186,12 +188,23 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                                           JOptionPane.INFORMATION_MESSAGE);
         }
         if (e.getSource() == resetBtn) {
+            if (!listSelectModel.isSelectionEmpty()) {
+                listSelectModel.clearSelection();
+            }
             try {
                 dictionary.loadFile("slang-org.txt");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             loadAllWords();
+        }
+        if (e.getSource() == hstrBtn) {
+            if (historySlangs.isEmpty()) {
+                JOptionPane.showMessageDialog(null,"You haven't searched any word!!!\nNothing to view!!!","History Empty",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                new SlangHistoryFrame(historySlangs);
+            }
         }
     }
 
