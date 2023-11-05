@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Complete Edit Slang Word with UI">
+    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Update function &quot;Add Slang&quot; with overwrite the old words">
+      <change afterPath="$PROJECT_DIR$/slang-new.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/slang-org.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangPutFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangPutFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,13 +44,16 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2Xe10u99RE8bgTBq1DcXE3AjkY6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -82,7 +88,9 @@
       <workItem from="1699017048602" duration="2695000" />
       <workItem from="1699064429654" duration="4558000" />
       <workItem from="1699104024196" duration="6484000" />
-      <workItem from="1699147227904" duration="2147000" />
+      <workItem from="1699147227904" duration="3805000" />
+      <workItem from="1699151413268" duration="28000" />
+      <workItem from="1699151460814" duration="1316000" />
     </task>
     <task id="LOCAL-00001" summary="Added important files, initial the UI window for the app and complete the UI for search box">
       <option name="closed" value="true" />
@@ -172,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699148038455</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update function &quot;Add Slang&quot; with overwrite the old words">
+      <option name="closed" value="true" />
+      <created>1699149819825</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699149819825</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +206,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added important files, initial the UI window for the app and complete the UI for search box" />
     <MESSAGE value="Complete the UI with a list of result at body panel, handle the get text from the search field" />
     <MESSAGE value="Added and initial the new 2 class for the words and dictionary to work with the slang word" />
@@ -201,6 +218,7 @@
     <MESSAGE value="Create a new UI Window and complete the add new slang function for the dictionary" />
     <MESSAGE value="Complete the function &quot;Random a slang&quot; with UI" />
     <MESSAGE value="Complete Edit Slang Word with UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete Edit Slang Word with UI" />
+    <MESSAGE value="Update function &quot;Add Slang&quot; with overwrite the old words" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update function &quot;Add Slang&quot; with overwrite the old words" />
   </component>
 </project>

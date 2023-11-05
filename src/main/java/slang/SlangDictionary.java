@@ -1,10 +1,9 @@
 package slang;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SlangDictionary {
     private HashMap<String,SlangWord> dictionary;
@@ -33,15 +32,37 @@ public class SlangDictionary {
         return true;
     }
 
-    public void importFile() throws IOException {
-        BufferedReader buffReader = new BufferedReader(new FileReader("slang.txt"));
-        String line = buffReader.readLine();
-        while ((line = buffReader.readLine()) != null) {
+    public void loadFile(String fileName) throws IOException {
+        File newFile = new File(fileName);
+        if (newFile.exists() && newFile.isFile()) {
+            BufferedReader newBuffReader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = newBuffReader.readLine()) != null) {
+                String[] parts = line.split("`");
+                SlangWord newWord = new SlangWord(parts[0],parts[1]);
+                updateSlang(newWord);
+            }
+            newBuffReader.close();
+            return;
+        }
+        BufferedReader orgBuffReader = new BufferedReader(new FileReader("slang-org.txt"));
+        String line;
+        while ((line = orgBuffReader.readLine()) != null) {
             String[] parts = line.split("`");
             SlangWord newWord = new SlangWord(parts[0],parts[1]);
-            addSlang(newWord);
+            updateSlang(newWord);
         }
-        buffReader.close();
+        orgBuffReader.close();
+    }
+
+     public void exportNewFile() throws IOException {
+        BufferedWriter buffWriter = new BufferedWriter(new FileWriter("slang-new.txt"));
+        for (Map.Entry<String,SlangWord> entry : dictionary.entrySet()) {
+            String key = entry.getKey();
+            String def = entry.getValue().getDef();
+            buffWriter.write(key + '`' + def + '\n');
+        }
+        buffWriter.close();
     }
 
     public SlangWord searchKey(String key) {

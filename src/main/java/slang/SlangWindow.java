@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -31,6 +33,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     JButton editBtn;
     JButton delBtn;
     JButton randomBtn;
+    JButton resetBtn;
     JButton hstrBtn;
     JPanel actionBox;
 
@@ -106,13 +109,16 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         addBtn.addActionListener(this);
         editBtn = new JButton("Edit selected slang");
         editBtn.addActionListener(this);
-        delBtn = new JButton("Delete slang word");
+        delBtn = new JButton("Delete slang");
         delBtn.addActionListener(this);
-        randomBtn = new JButton("Random a slang");
+        randomBtn = new JButton("Random slang");
         randomBtn.addActionListener(this);
+        resetBtn = new JButton("Reset dictionary");
+        resetBtn.addActionListener(this);
         hstrBtn = new JButton("View history");
         hstrBtn.addActionListener(this);
         actionBox = new JPanel();
+        actionBox.add(resetBtn);
         actionBox.add(randomBtn);
         actionBox.add(addBtn);
         actionBox.add(editBtn);
@@ -179,7 +185,14 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                                    "Slang word randomized",
                                           JOptionPane.INFORMATION_MESSAGE);
         }
-
+        if (e.getSource() == resetBtn) {
+            try {
+                dictionary.loadFile("slang-org.txt");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            loadAllWords();
+        }
     }
 
     @Override
