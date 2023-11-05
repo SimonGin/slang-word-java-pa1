@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Create a new UI Window and complete the add new slang function for the dictionary">
+    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Complete the function &quot;Random a slang&quot; with UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangPutFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangPutFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +82,8 @@
       <workItem from="1698994111492" duration="8633000" />
       <workItem from="1699017048602" duration="2695000" />
       <workItem from="1699064429654" duration="4558000" />
-      <workItem from="1699104024196" duration="4343000" />
+      <workItem from="1699104024196" duration="6484000" />
+      <workItem from="1699147227904" duration="641000" />
     </task>
     <task id="LOCAL-00001" summary="Added important files, initial the UI window for the app and complete the UI for search box">
       <option name="closed" value="true" />
@@ -154,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699107481445</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Complete the function &quot;Random a slang&quot; with UI">
+      <option name="closed" value="true" />
+      <created>1699108863147</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699108863147</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +192,7 @@
     <MESSAGE value="Added Action UI and handle delete slang by selecting row not confirming after" />
     <MESSAGE value="Complete handling deleting a slang requiring confirming" />
     <MESSAGE value="Create a new UI Window and complete the add new slang function for the dictionary" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create a new UI Window and complete the add new slang function for the dictionary" />
+    <MESSAGE value="Complete the function &quot;Random a slang&quot; with UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete the function &quot;Random a slang&quot; with UI" />
   </component>
 </project>

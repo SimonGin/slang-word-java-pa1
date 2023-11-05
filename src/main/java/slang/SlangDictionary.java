@@ -25,6 +25,14 @@ public class SlangDictionary {
         return true;
     }
 
+    public boolean updateSlang(SlangWord word) {
+        if (word.getDef().isBlank()) {
+            return false;
+        }
+        dictionary.put(word.getKey(),word);
+        return true;
+    }
+
     public void importFile() throws IOException {
         BufferedReader buffReader = new BufferedReader(new FileReader("slang.txt"));
         String line;

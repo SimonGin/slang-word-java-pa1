@@ -1,10 +1,7 @@
 package slang;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -163,7 +160,13 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             }
         }
         if (e.getSource() == addBtn) {
-            SlangPutFrame addNewSlangFrame = new SlangPutFrame(dictionary,"Add New Slang","Add");
+            SlangPutFrame addNewSlangFrame = new SlangPutFrame(dictionary,"","Add New Slang","Add");
+            loadAllWords();
+        }
+
+        if (e.getSource() == editBtn) {
+            SlangPutFrame editNewSlangFrame = new SlangPutFrame(dictionary,selectedKey,"Edit Selected Slang","Confirm");
+            loadAllWords();
         }
 
         if (e.getSource() == randomBtn) {
