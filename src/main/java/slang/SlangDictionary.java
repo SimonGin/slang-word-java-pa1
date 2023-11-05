@@ -35,7 +35,7 @@ public class SlangDictionary {
 
     public void importFile() throws IOException {
         BufferedReader buffReader = new BufferedReader(new FileReader("slang.txt"));
-        String line;
+        String line = buffReader.readLine();
         while ((line = buffReader.readLine()) != null) {
             String[] parts = line.split("`");
             SlangWord newWord = new SlangWord(parts[0],parts[1]);

@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class SlangWindow extends JFrame implements ActionListener, DocumentListener {
-    SlangDictionary dictionary;
-    DefaultTableModel tableModel;
+    static public SlangDictionary dictionary;
+    static public DefaultTableModel tableModel;
 
     String srchDes;
     String selectedKey;
@@ -34,7 +34,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     JButton hstrBtn;
     JPanel actionBox;
 
-    private void loadAllWords() {
+    static public void loadAllWords() {
         tableModel.setRowCount(0);
         for (Map.Entry<String, SlangWord> entry : dictionary.getDictionary().entrySet()) {
             tableModel.addRow(new Object[]{entry.getKey(), entry.getValue().getDef()});
@@ -161,12 +161,10 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         }
         if (e.getSource() == addBtn) {
             SlangPutFrame addNewSlangFrame = new SlangPutFrame(dictionary,"","Add New Slang","Add");
-            loadAllWords();
         }
 
         if (e.getSource() == editBtn) {
             SlangPutFrame editNewSlangFrame = new SlangPutFrame(dictionary,selectedKey,"Edit Selected Slang","Confirm");
-            loadAllWords();
         }
 
         if (e.getSource() == randomBtn) {

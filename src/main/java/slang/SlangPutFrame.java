@@ -73,9 +73,15 @@ public class SlangPutFrame extends JFrame implements ActionListener {
                 SlangWord newWord = new SlangWord(newKey, newDef);
                 if (dictionary.addSlang(newWord)) {
                     this.dispose();
+                    SlangWindow.loadAllWords();
                     JOptionPane.showMessageDialog(null, "New slang has been added to the dictionary!!!", "Added Successfully", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Slang key has already existed in the dictionary!!!\nPlease change the keyword or add new words!!!", "Added Failed", JOptionPane.ERROR_MESSAGE);
+                    int isOverwrite = JOptionPane.showConfirmDialog(null, "Slang key has already existed in the dictionary!!!\nDo you want to overwrite the word???", "Overwrite Slang", JOptionPane.YES_NO_OPTION);
+                    if (isOverwrite == 0) {
+                        dictionary.updateSlang(newWord);
+                        SlangWindow.loadAllWords();
+                        this.dispose();
+                    }
                 }
             }
         }
@@ -87,6 +93,7 @@ public class SlangPutFrame extends JFrame implements ActionListener {
             SlangWord editedWord = new SlangWord(editKey,newDef);
             if (dictionary.updateSlang(editedWord)) {
                 this.dispose();
+                SlangWindow.loadAllWords();
                 JOptionPane.showMessageDialog(null, "Selected slang has been updated!!!", "Edited Successfully", JOptionPane.INFORMATION_MESSAGE);
             }
         }
