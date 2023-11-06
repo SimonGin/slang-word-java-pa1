@@ -12,8 +12,10 @@ public class SlangGameFrame extends JFrame implements ActionListener {
     int result;
     JButton optBtn;
     JLabel quizLabel;
+    String quizType;
 
     SlangGameFrame(String type) {
+        quizType = type;
         choices = new ArrayList<>();
 
         while (true) {
@@ -79,12 +81,25 @@ public class SlangGameFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(choices.get(result).getDef())) {
-            dispose();
-            JOptionPane.showMessageDialog(null,"Congratulation!!!\nYou Won The Game!!!","Right Answer",JOptionPane.INFORMATION_MESSAGE);
+
+        if (quizType.equals("key")) {
+            if (e.getActionCommand().equals(choices.get(result).getDef())) {
+                dispose();
+                JOptionPane.showMessageDialog(null,"Congratulation!!!\nYou Won The Game!!!","Right Answer",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null,"You're wrong!!!\nPlease choose another option!!!","Wrong Answer",JOptionPane.ERROR_MESSAGE);
+            }
         }
-        else {
-            JOptionPane.showMessageDialog(null,"You're wrong!!!\nPlease choose another option!!!","Wrong Answer",JOptionPane.ERROR_MESSAGE);
+
+        else if (quizType.equals("def")) {
+            if (e.getActionCommand().equals(choices.get(result).getKey())) {
+                dispose();
+                JOptionPane.showMessageDialog(null,"Congratulation!!!\nYou Won The Game!!!","Right Answer",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null,"You're wrong!!!\nPlease choose another option!!!","Wrong Answer",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

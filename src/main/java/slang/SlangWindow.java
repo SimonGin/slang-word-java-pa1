@@ -222,6 +222,10 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         if (e.getSource() == keyGameBtn) {
             new SlangGameFrame("key");
         }
+
+        if (e.getSource() == defGameBtn) {
+            new SlangGameFrame("def");
+        }
     }
 
     @Override
