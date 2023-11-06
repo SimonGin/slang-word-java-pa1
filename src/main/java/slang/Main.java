@@ -16,5 +16,6 @@ public class Main {
                 throw new RuntimeException(e);
             }
         }));
+//        new SlangGameFrame();
     }
 }

@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class SlangDictionary {
     private HashMap<String,SlangWord> dictionary;
@@ -81,6 +82,15 @@ public class SlangDictionary {
             }
         }
         return foundWords;
+    }
+
+    public SlangWord randomizeSlang() {
+        String[] keyArr = dictionary.keySet().toArray(new String[0]);
+        Random random = new Random();
+        int randomIdx = random.nextInt(keyArr.length);
+        String randomKey = keyArr[randomIdx];
+        SlangWord randomSlang = dictionary.get(randomKey);
+        return randomSlang;
     }
 
     public void deleteSlang(String key) {

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Complete &quot;Reset original slang dictionary&quot; function">
-      <change afterPath="$PROJECT_DIR$/slang-new.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slang/SlangHistoryFrame.java" afterDir="false" />
+    <list default="true" id="6a6fe8fd-9de6-41b2-8bfe-a403dc3ad2a5" name="Changes" comment="Complete &quot;View History&quot; function with UI display">
+      <change afterPath="$PROJECT_DIR$/src/main/java/slang/SlangGameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangDictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slang/SlangWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +90,8 @@
       <workItem from="1699147227904" duration="3805000" />
       <workItem from="1699151413268" duration="28000" />
       <workItem from="1699151460814" duration="1634000" />
-      <workItem from="1699187561769" duration="2538000" />
+      <workItem from="1699187561769" duration="6064000" />
+      <workItem from="1699248623958" duration="2830000" />
     </task>
     <task id="LOCAL-00001" summary="Added important files, initial the UI window for the app and complete the UI for search box">
       <option name="closed" value="true" />
@@ -195,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699153041149</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Complete &quot;View History&quot; function with UI display">
+      <option name="closed" value="true" />
+      <created>1699192649504</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699192649504</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +237,7 @@
     <MESSAGE value="Complete Edit Slang Word with UI" />
     <MESSAGE value="Update function &quot;Add Slang&quot; with overwrite the old words" />
     <MESSAGE value="Complete &quot;Reset original slang dictionary&quot; function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete &quot;Reset original slang dictionary&quot; function" />
+    <MESSAGE value="Complete &quot;View History&quot; function with UI display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete &quot;View History&quot; function with UI display" />
   </component>
 </project>

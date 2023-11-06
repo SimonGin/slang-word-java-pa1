@@ -35,6 +35,8 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
     JButton randomBtn;
     JButton resetBtn;
     JButton hstrBtn;
+    JButton keyGameBtn;
+    JButton defGameBtn;
     JPanel actionBox;
 
     static public void loadAllWords() {
@@ -117,6 +119,11 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         resetBtn.addActionListener(this);
         hstrBtn = new JButton("View history");
         hstrBtn.addActionListener(this);
+        keyGameBtn = new JButton("Game 1");
+        keyGameBtn.addActionListener(this);
+        defGameBtn = new JButton("Game 2");
+        defGameBtn.addActionListener(this);
+
         actionBox = new JPanel();
         actionBox.add(resetBtn);
         actionBox.add(randomBtn);
@@ -124,6 +131,11 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         actionBox.add(editBtn);
         actionBox.add(delBtn);
         actionBox.add(hstrBtn);
+        actionBox.add(keyGameBtn);
+        actionBox.add(defGameBtn);
+
+        actionBox.setPreferredSize(new Dimension(900,70));
+
         this.add(actionBox,BorderLayout.SOUTH);
 
         this.setResizable(false);
@@ -153,6 +165,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 }
             }
         }
+
         if (e.getSource() == delBtn) {
             if (!listSelectModel.isSelectionEmpty()) {
                 int confirm_code = JOptionPane.showConfirmDialog(null,"Do you want to delete the selected slang permanently (a really long time)?","Delete Confirmation",JOptionPane.YES_NO_OPTION);
@@ -167,6 +180,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 JOptionPane.showMessageDialog(null,"You haven't selected any slang to delete!!! Please select a word you want to delete!!!","Word not selected",JOptionPane.WARNING_MESSAGE);
             }
         }
+
         if (e.getSource() == addBtn) {
             new SlangPutFrame(dictionary,"","Add New Slang","Add");
         }
@@ -176,17 +190,14 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         }
 
         if (e.getSource() == randomBtn) {
-            String[] keyArr = dictionary.getDictionary().keySet().toArray(new String[0]);
-            Random random = new Random();
-            int randomIdx = random.nextInt(keyArr.length);
-            String randomKey = keyArr[randomIdx];
-            SlangWord randomSlang = dictionary.getDictionary().get(randomKey);
+            SlangWord randomSlang = dictionary.randomizeSlang();
             JOptionPane.showMessageDialog(null,
                                  "Slang word for today is: " + randomSlang.getKey() +
                                           "\nWith the meaning of: " + randomSlang.getDef(),
                                    "Slang word randomized",
                                           JOptionPane.INFORMATION_MESSAGE);
         }
+
         if (e.getSource() == resetBtn) {
             if (!listSelectModel.isSelectionEmpty()) {
                 listSelectModel.clearSelection();
@@ -198,6 +209,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             }
             loadAllWords();
         }
+
         if (e.getSource() == hstrBtn) {
             if (historySlangs.isEmpty()) {
                 JOptionPane.showMessageDialog(null,"You haven't searched any word!!!\nNothing to view!!!","History Empty",JOptionPane.INFORMATION_MESSAGE);
@@ -205,6 +217,10 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             else {
                 new SlangHistoryFrame(historySlangs);
             }
+        }
+
+        if (e.getSource() == keyGameBtn) {
+            new SlangGameFrame("key");
         }
     }
 
