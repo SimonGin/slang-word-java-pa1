@@ -90,8 +90,7 @@ public class SlangDictionary {
         Random random = new Random();
         int randomIdx = random.nextInt(keyArr.length);
         String randomKey = keyArr[randomIdx];
-        SlangWord randomSlang = dictionary.get(randomKey);
-        return randomSlang;
+        return dictionary.get(randomKey);
     }
 
     public void deleteSlang(String key) {

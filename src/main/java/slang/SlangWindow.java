@@ -174,6 +174,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 throw new RuntimeException(ex);
             }
             loadAllWords();
+            JOptionPane.showMessageDialog(null,"Your Slang Dictionary has been reset to original!!!","Dictionary Reset",JOptionPane.INFORMATION_MESSAGE);
         }
 
         if (e.getActionCommand().equals("View History")) {
