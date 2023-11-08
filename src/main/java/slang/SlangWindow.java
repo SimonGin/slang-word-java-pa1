@@ -9,35 +9,21 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Random;
 
 public class SlangWindow extends JFrame implements ActionListener, DocumentListener {
     static public SlangDictionary dictionary;
-    static public DefaultTableModel tableModel;
+    static public DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"Slang", "Meaning"}, 0) {
+        @Override
+        public boolean isCellEditable(int row,int col) {
+            return false;
+        }
+    };
     ArrayList<SlangWord> historySlangs = new ArrayList<>();
 
-    String srchDes;
-    String selectedKey;
-    ListSelectionModel listSelectModel;
+    private String selectedKey;
+    private final ListSelectionModel listSelectModel;
 
-    JTextField srchSlangField;
-    JButton srchKeyBtn;
-    JButton srchDefBtn;
-    JPanel srchBox;
-
-    JTable resultTable;
-    JScrollPane resultScrollPane;
-    JPanel resultBox;
-
-    JButton addBtn;
-    JButton editBtn;
-    JButton delBtn;
-    JButton randomBtn;
-    JButton resetBtn;
-    JButton hstrBtn;
-    JButton keyGameBtn;
-    JButton defGameBtn;
-    JPanel actionBox;
+    private final JTextField srchSlangField;
 
     static public void loadAllWords() {
         tableModel.setRowCount(0);
@@ -60,31 +46,24 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
         srchSlangField.setFont(new Font("Roboto", Font.PLAIN, 18));
         srchSlangField.getDocument().addDocumentListener(this);
 
-        srchKeyBtn = new JButton("Search by keyword");
-        srchKeyBtn.addActionListener(this);
-        srchDefBtn = new JButton("Search by definition");
-        srchDefBtn.addActionListener(this);
-
-        srchBox = new JPanel();
+        JPanel srchBox = new JPanel();
         srchBox.setBackground(Color.CYAN);
         srchBox.setSize(900,100);
 
         srchBox.add(srchSlangField);
-        srchBox.add(srchKeyBtn);
-        srchBox.add(srchDefBtn);
+
+        JButton srchBtn = new JButton("Search By Keyword");
+        srchBtn.addActionListener(this);
+        srchBox.add(srchBtn);
+        srchBtn = new JButton("Search By Definition");
+        srchBtn.addActionListener(this);
+        srchBox.add(srchBtn);
 
         this.add(srchBox,BorderLayout.NORTH);
 
-        tableModel = new DefaultTableModel(new Object[]{"Slang", "Meaning"}, 0) {
-            @Override
-            public  boolean isCellEditable(int row,int col) {
-                return false;
-            }
-        };
-
         loadAllWords();
 
-        resultTable = new JTable(tableModel);
+        JTable resultTable = new JTable(tableModel);
         resultTable.setFont(new Font("Roboto", Font.PLAIN, 18));
         listSelectModel = resultTable.getSelectionModel();
         listSelectModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -100,39 +79,23 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                 }
             }
         });
-        resultScrollPane = new JScrollPane(resultTable);
+        JScrollPane resultScrollPane = new JScrollPane(resultTable);
         resultScrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        resultBox = new JPanel();
+        JPanel resultBox = new JPanel();
         resultBox.add(resultScrollPane);
         this.add(resultScrollPane,BorderLayout.CENTER);
 
-        addBtn = new JButton("Add new slang");
-        addBtn.addActionListener(this);
-        editBtn = new JButton("Edit selected slang");
-        editBtn.addActionListener(this);
-        delBtn = new JButton("Delete slang");
-        delBtn.addActionListener(this);
-        randomBtn = new JButton("Random slang");
-        randomBtn.addActionListener(this);
-        resetBtn = new JButton("Reset dictionary");
-        resetBtn.addActionListener(this);
-        hstrBtn = new JButton("View history");
-        hstrBtn.addActionListener(this);
-        keyGameBtn = new JButton("Game 1");
-        keyGameBtn.addActionListener(this);
-        defGameBtn = new JButton("Game 2");
-        defGameBtn.addActionListener(this);
+        JPanel actionBox = new JPanel();
 
-        actionBox = new JPanel();
-        actionBox.add(resetBtn);
-        actionBox.add(randomBtn);
-        actionBox.add(addBtn);
-        actionBox.add(editBtn);
-        actionBox.add(delBtn);
-        actionBox.add(hstrBtn);
-        actionBox.add(keyGameBtn);
-        actionBox.add(defGameBtn);
+        String[] actionList = {"Reset Dictionary","Random Slang","Add New Slang","Edit Selected Slang","Delete Slang",
+                               "View History","Guess Slang Meaning Quiz","What's The Slang Quiz"};
+
+        for (String act : actionList) {
+            JButton actionBtn = new JButton(act);
+            actionBtn.addActionListener(this);
+            actionBox.add(actionBtn);
+        }
 
         actionBox.setPreferredSize(new Dimension(900,70));
 
@@ -144,17 +107,17 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ((e.getSource() == srchKeyBtn) || (e.getSource() == srchDefBtn)) {
-            srchDes = srchSlangField.getText();
-            if (e.getSource() == srchKeyBtn) {
+        if ((e.getActionCommand().equals("Search By Keyword")) || (e.getActionCommand().equals("Search By Definition"))) {
+            String srchDes = srchSlangField.getText();
+            if (e.getActionCommand().equals("Search By Keyword")) {
                 SlangWord foundWord = dictionary.searchKey(srchDes);
-                historySlangs.add(foundWord);
                 tableModel.setRowCount(0);
                 if (foundWord != null) {
                     tableModel.addRow(new Object[]{foundWord.getKey(), foundWord.getDef()});
+                    historySlangs.add(foundWord);
                 }
             }
-            if (e.getSource() == srchDefBtn) {
+            if (e.getActionCommand().equals("Search By Definition")) {
                 ArrayList<SlangWord> foundWords = dictionary.searchDef(srchDes);
                 tableModel.setRowCount(0);
                 if (foundWords != null) {
@@ -166,7 +129,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             }
         }
 
-        if (e.getSource() == delBtn) {
+        if (e.getActionCommand().equals("Delete Slang")) {
             if (!listSelectModel.isSelectionEmpty()) {
                 int confirm_code = JOptionPane.showConfirmDialog(null,"Do you want to delete the selected slang permanently (a really long time)?","Delete Confirmation",JOptionPane.YES_NO_OPTION);
                 if (confirm_code == 0) {
@@ -175,21 +138,24 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                     srchSlangField.setText("");
                     loadAllWords();
                 }
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null,"You haven't selected any slang to delete!!! Please select a word you want to delete!!!","Word not selected",JOptionPane.WARNING_MESSAGE);
             }
         }
 
-        if (e.getSource() == addBtn) {
+        if (e.getActionCommand().equals("Add New Slang")) {
             new SlangPutFrame(dictionary,"","Add New Slang","Add");
         }
 
-        if (e.getSource() == editBtn) {
-            new SlangPutFrame(dictionary,selectedKey,"Edit Selected Slang","Confirm");
+        if (e.getActionCommand().equals("Edit Selected Slang")) {
+            if (!listSelectModel.isSelectionEmpty()) {
+                new SlangPutFrame(dictionary,selectedKey,"Edit Selected Slang","Confirm");
+            } else {
+                JOptionPane.showMessageDialog(null,"You haven't selected any slang to delete!!! Please select a word you want to edit!!!","Word not selected",JOptionPane.WARNING_MESSAGE);
+            }
         }
 
-        if (e.getSource() == randomBtn) {
+        if (e.getActionCommand().equals("Random Slang")) {
             SlangWord randomSlang = dictionary.randomizeSlang();
             JOptionPane.showMessageDialog(null,
                                  "Slang word for today is: " + randomSlang.getKey() +
@@ -198,7 +164,7 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
                                           JOptionPane.INFORMATION_MESSAGE);
         }
 
-        if (e.getSource() == resetBtn) {
+        if (e.getActionCommand().equals("Reset Dictionary")) {
             if (!listSelectModel.isSelectionEmpty()) {
                 listSelectModel.clearSelection();
             }
@@ -210,20 +176,19 @@ public class SlangWindow extends JFrame implements ActionListener, DocumentListe
             loadAllWords();
         }
 
-        if (e.getSource() == hstrBtn) {
+        if (e.getActionCommand().equals("View History")) {
             if (historySlangs.isEmpty()) {
                 JOptionPane.showMessageDialog(null,"You haven't searched any word!!!\nNothing to view!!!","History Empty",JOptionPane.INFORMATION_MESSAGE);
-            }
-            else {
+            } else {
                 new SlangHistoryFrame(historySlangs);
             }
         }
 
-        if (e.getSource() == keyGameBtn) {
+        if (e.getActionCommand().equals("Guess Slang Meaning Quiz")) {
             new SlangGameFrame("key");
         }
 
-        if (e.getSource() == defGameBtn) {
+        if (e.getActionCommand().equals("What's The Slang Quiz")) {
             new SlangGameFrame("def");
         }
     }

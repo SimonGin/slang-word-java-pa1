@@ -10,15 +10,11 @@ public class SlangPutFrame extends JFrame implements ActionListener {
     int actionType;
     SlangDictionary dictionary;
 
-    JLabel keyLabel = new JLabel("Key: ");
-    JLabel defLabel = new JLabel("Definition: ");
-
     JTextField keyField;
     JTextField defField;
 
     JButton confirmBtn;
 
-    JPanel inputBox;
     SlangPutFrame(SlangDictionary dict,String selectedKey,String title,String confirmText) {
         dictionary = dict;
         editKey = selectedKey;
@@ -40,8 +36,11 @@ public class SlangPutFrame extends JFrame implements ActionListener {
         defField = new JTextField();
         defField.setPreferredSize(new Dimension(500,50));
 
-        inputBox = new JPanel();
+        JLabel defLabel = new JLabel("Definition: ");
+
+        JPanel inputBox = new JPanel();
         if (actionType == 1) {
+            JLabel keyLabel = new JLabel("Key: ");
             inputBox.add(keyLabel);
             inputBox.add(keyField);
         }

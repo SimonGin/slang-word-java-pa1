@@ -13,8 +13,9 @@ public class SlangDictionary {
         return dictionary;
     }
 
-    public SlangDictionary() {
+    public SlangDictionary(String file) throws IOException {
         this.dictionary = new HashMap<>();
+        this.loadFile(file);
     }
 
     public boolean addSlang(SlangWord word) {

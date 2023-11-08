@@ -4,10 +4,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        SlangDictionary dictionary = new SlangDictionary();
-        dictionary.loadFile("slang-new.txt");
+        SlangDictionary dictionary = new SlangDictionary("slang-new.txt");
 
-        SlangWindow window = new SlangWindow(dictionary);
+        new SlangWindow(dictionary);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
@@ -16,6 +15,5 @@ public class Main {
                 throw new RuntimeException(e);
             }
         }));
-//        new SlangGameFrame();
     }
 }
